@@ -1,4 +1,5 @@
-﻿using AtopPlugin.State;
+﻿using AtopPlugin.Conflict;
+using AtopPlugin.State;
 using vatsys;
 
 namespace AtopPlugin;
@@ -13,6 +14,11 @@ public static class Extensions
     public static AtopAircraftDisplayState? GetDisplayState(this FDP2.FDR fdr)
     {
         return AtopPluginStateManager.GetDisplayState(fdr.Callsign);
+    }
+
+    public static ConflictProbe.Conflicts? GetConflicts(this FDP2.FDR fdr)
+    {
+        return AtopPluginStateManager.GetConflicts(fdr.Callsign);
     }
 
     public static int? GetTransponderCode(this FDP2.FDR fdr)

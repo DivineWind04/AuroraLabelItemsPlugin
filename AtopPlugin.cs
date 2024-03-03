@@ -30,6 +30,7 @@ public class AtopPlugin : ILabelPlugin, IStripPlugin
     {
         AtopPluginStateManager.ProcessFdrUpdate(updated);
         AtopPluginStateManager.ProcessDisplayUpdate(updated);
+        AtopPluginStateManager.RunConflictProbe(updated);
         FdrPropertyChangesListener.RegisterHandler(updated);
 
         // don't manage jurisdiction if not connected as ATC

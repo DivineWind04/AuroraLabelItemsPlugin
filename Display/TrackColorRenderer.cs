@@ -32,7 +32,7 @@ public static class TrackColorRenderer
 
     private static CustomColour? GetConflictColour(FDP2.FDR fdr)
     {
-        return fdr.GetAtopState()?.Conflicts switch
+        return fdr.GetConflicts() switch
         {
             { ActualConflicts.Count: > 0 } or { ImminentConflicts.Count: > 0 } => CustomColors.Imminent,
             { AdvisoryConflicts.Count: > 0 } => CustomColors.Advisory,
