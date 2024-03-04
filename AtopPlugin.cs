@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.Composition;
+using System.Windows.Forms;
 using AtopPlugin.Display;
 using AtopPlugin.State;
+using AtopPlugin.UI;
 using vatsys;
 using vatsys.Plugin;
 
@@ -11,9 +13,17 @@ public class AtopPlugin : ILabelPlugin, IStripPlugin
 {
     public string Name => "ATOP Plugin";
 
+    private static readonly SettingsWindow SettingsWindow;
+
+    static AtopPlugin()
+    {
+        SettingsWindow = new SettingsWindow();
+    }
+
     public AtopPlugin()
     {
         RegisterEventHandlers();
+        AddCustomMenuItems();
     }
 
     private static void RegisterEventHandlers()
@@ -24,6 +34,17 @@ public class AtopPlugin : ILabelPlugin, IStripPlugin
         // changes to cleared flight level do not register an FDR update
         // we need to create custom handlers to be able to update the label/strip
         FdrPropertyChangesListener.RegisterAllHandlers();
+    }
+
+    private static void AddCustomMenuItems()
+    {
+        var settingsMenu = new CustomToolStripMenuItem(CustomToolStripMenuItemWindowType.Main,
+            CustomToolStripMenuItemCategory.Custom, new ToolStripMenuItem("Settings"))
+        {
+            CustomCategoryName = "ATOP"
+        };
+        settingsMenu.Item.Click += (_, _) => MMI.InvokeOnGUI(SettingsWindow.Show);
+        MMI.AddCustomMenuItem(settingsMenu);
     }
 
     public void OnFDRUpdate(FDP2.FDR updated)
