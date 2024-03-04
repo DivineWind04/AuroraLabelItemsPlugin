@@ -29,5 +29,6 @@ public static class FdrPropertyChangesListener
         if (!RelevantProperties.Contains(eventArgs.PropertyName)) return;
         await AtopPluginStateManager.ProcessFdrUpdate(fdr);
         await AtopPluginStateManager.ProcessDisplayUpdate(fdr);
+        await AtopPluginStateManager.RunConflictProbe(fdr);
     }
 }
