@@ -79,14 +79,14 @@ public static class LabelItemRenderer
             LabelConstants.LabelItemLevel => displayState.AltitudeColor == null
                 ? new CustomLabelItem
                 {
-                    Text = displayState.CurrentLevel,
+                    Text = displayState.CurrentLevel.PadLeft(3),
                     Border = displayState.AltitudeBorderFlags,
                     BorderColourIdentity = Colours.Identities.Custom,
                     CustomBorderColour = CustomColors.NotCda
                 }
                 : new CustomLabelItem
                 {
-                    Text = displayState.CurrentLevel,
+                    Text = displayState.CurrentLevel.PadLeft(3),
                     Border = displayState.AltitudeBorderFlags,
                     BorderColourIdentity = Colours.Identities.Custom,
                     CustomBorderColour = CustomColors.NotCda,
@@ -97,14 +97,14 @@ public static class LabelItemRenderer
             LabelConstants.LabelItemVmi => displayState.AltitudeColor == null
                 ? new CustomLabelItem
                 {
-                    Text = atopState.AltitudeFlag?.Value ?? "",
+                    Text = (atopState.AltitudeFlag?.Value ?? "").PadLeft(1),
                     Border = displayState.AltitudeBorderFlags,
                     BorderColourIdentity = Colours.Identities.Custom,
                     CustomBorderColour = CustomColors.NotCda
                 }
                 : new CustomLabelItem
                 {
-                    Text = atopState.AltitudeFlag?.Value ?? "",
+                    Text = (atopState.AltitudeFlag?.Value ?? "").PadLeft(1),
                     Border = displayState.AltitudeBorderFlags,
                     BorderColourIdentity = Colours.Identities.Custom,
                     CustomBorderColour = CustomColors.NotCda,
@@ -115,14 +115,14 @@ public static class LabelItemRenderer
             LabelConstants.LabelItemClearedLevel => displayState.AltitudeColor == null
                 ? new CustomLabelItem
                 {
-                    Text = displayState.ClearedLevel,
+                    Text = displayState.ClearedLevel.PadLeft(3),
                     Border = displayState.AltitudeBorderFlags,
                     BorderColourIdentity = Colours.Identities.Custom,
                     CustomBorderColour = CustomColors.NotCda
                 }
                 : new CustomLabelItem
                 {
-                    Text = displayState.ClearedLevel,
+                    Text = displayState.ClearedLevel.PadLeft(3),
                     Border = displayState.AltitudeBorderFlags,
                     BorderColourIdentity = Colours.Identities.Custom,
                     CustomBorderColour = CustomColors.NotCda,
