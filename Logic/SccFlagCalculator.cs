@@ -12,18 +12,12 @@ public static class SccFlagCalculator
     public static SccFlag? CalculateHighestPriorityFlag(FDP2.FDR fdr, CalculatedFlightData calculatedFlightData)
     {
         var transponderCode = fdr.GetTransponderCode();
-        switch (transponderCode)
+        return transponderCode switch
         {
-            case EmergencyCode:
-                return SccFlag.Emg;
-            case RadioFailureCode:
-                return SccFlag.Rcf;
-            case MilitaryInterceptCode:
-                return SccFlag.Mti;
-        }
-
-        if (!calculatedFlightData.Rnp4 || !calculatedFlightData.Rnp10) return SccFlag.Rnp;
-
-        return null;
+            EmergencyCode => SccFlag.Emg,
+            RadioFailureCode => SccFlag.Rcf,
+            MilitaryInterceptCode => SccFlag.Mti,
+            _ => calculatedFlightData is { Rnp4: false, Rnp10: false } ? SccFlag.Rnp : null
+        };
     }
 }
