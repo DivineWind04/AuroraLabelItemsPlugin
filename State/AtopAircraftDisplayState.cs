@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AtopPlugin.Logic;
 using AtopPlugin.Models;
 using vatsys;
@@ -86,7 +87,13 @@ public class AtopAircraftDisplayState
 
     private static string GetCurrentLevel(AtopAircraftState atopAircraftState)
     {
-        var prlHundreds = atopAircraftState.Fdr.PRL / 100;
+        var fdr = atopAircraftState.Fdr;
+        var altitudeBlock = AltitudeBlock.ExtractAltitudeBlock(fdr);
+
+        var prlHundreds = (int)Math.Round(atopAircraftState.Fdr.PRL / 100.0);
+        if (!atopAircraftState.PendingAltitudeChange || AltitudeCalculator.IsWithinThreshold(fdr.PRL, altitudeBlock))
+            return prlHundreds == 0 ? "" : (int)Math.Round(prlHundreds / 10.0) + "0";
+
         return prlHundreds == 0 ? "" : prlHundreds.ToString();
     }
 
