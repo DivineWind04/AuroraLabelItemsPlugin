@@ -55,6 +55,7 @@ partial class SettingsWindow
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(146, 72);
         this.Controls.Add(this.probe);
+        this.HideOnClose = true;
         this.Name = "SettingsWindow";
         this.Text = "ATOP Settings";
         this.TopMost = true;
