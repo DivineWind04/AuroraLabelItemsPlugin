@@ -116,6 +116,7 @@ public static class AtopPluginStateManager
         }
 
         _activated = activated;
+
         return activated;
     }
 
