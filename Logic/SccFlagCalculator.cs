@@ -11,6 +11,8 @@ public static class SccFlagCalculator
 
     public static SccFlag? CalculateHighestPriorityFlag(FDP2.FDR fdr, CalculatedFlightData calculatedFlightData)
     {
+        if (!fdr.IsConnected()) return SccFlag.Or;
+
         var transponderCode = fdr.GetTransponderCode();
         return transponderCode switch
         {

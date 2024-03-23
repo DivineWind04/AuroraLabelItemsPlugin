@@ -31,6 +31,12 @@ public static class Extensions
         return fdr.PerformanceData?.IsJet ?? false;
     }
 
+    public static bool IsConnected(this FDP2.FDR fdr)
+    {
+        return fdr.CoupledTrack?.ActualAircraft != null ||
+               Network.GetOnlinePilots.Exists(pilot => pilot.Callsign == fdr.Callsign);
+    }
+
     public static bool IsSelected(this Track track)
     {
         return MMI.SelectedTrack == track;

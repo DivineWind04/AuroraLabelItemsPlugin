@@ -9,7 +9,6 @@ public static class JurisdictionManager
 {
     public static async Task HandleFdrUpdate(FDP2.FDR fdr)
     {
-        // TODO(msalikhov): Because of this its impossible to cancel an FDR that's disconnected
         if (!fdr.ESTed && MMI.IsMySectorConcerned(fdr)) MMI.EstFDR(fdr);
 
         var isInControlledSector = await IsInControlledSector(fdr.GetLocation(), fdr.PRL);
