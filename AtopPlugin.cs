@@ -43,8 +43,19 @@ public class AtopPlugin : ILabelPlugin, IStripPlugin
         {
             CustomCategoryName = "ATOP"
         };
+        var activationToggle = new ToolStripMenuItem("Activate");
+        var activationMenuItem = new CustomToolStripMenuItem(CustomToolStripMenuItemWindowType.Main,
+            CustomToolStripMenuItemCategory.Custom, activationToggle)
+        {
+            CustomCategoryName = "ATOP"
+        };
         settingsMenu.Item.Click += (_, _) => MMI.InvokeOnGUI(SettingsWindow.Show);
+        activationMenuItem.Item.Click += (_, _) => MMI.InvokeOnGUI(() =>
+        {
+            activationToggle.Checked = AtopPluginStateManager.SetActivated(!activationToggle.Checked);
+        });
         MMI.AddCustomMenuItem(settingsMenu);
+        MMI.AddCustomMenuItem(activationMenuItem);
     }
 
     public void OnFDRUpdate(FDP2.FDR updated)
