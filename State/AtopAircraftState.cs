@@ -12,7 +12,7 @@ public class AtopAircraftState
         UpdateFromFdr(fdr);
         DownlinkIndicator = false;
         RadarToggleIndicator = false;
-        PreviouslyTracked = false;
+        WasHandedOff = false;
     }
 
     public FDP2.FDR Fdr { get; private set; }
@@ -23,7 +23,7 @@ public class AtopAircraftState
     public SectorsVolumes.Sector? NextSector { get; private set; }
     public bool DownlinkIndicator { get; set; }
     public bool RadarToggleIndicator { get; set; }
-    public bool PreviouslyTracked { get; set; }
+    public bool WasHandedOff { get; private set; }
     public bool PendingAltitudeChange { get; private set; }
 
     private AltitudeBlock PreviousAltitudeBlock { get; set; }
@@ -34,6 +34,7 @@ public class AtopAircraftState
 
         CalculatedFlightData = FlightDataCalculator.GetCalculatedFlightData(updatedFdr);
         DirectionOfFlight = DirectionOfFlightCalculator.GetDirectionOfFlight(updatedFdr);
+        WasHandedOff = !WasHandedOff && (updatedFdr.IsHandoff || updatedFdr.ControllingSector == null);
         HighestSccFlag = SccFlagCalculator.CalculateHighestPriorityFlag(updatedFdr, CalculatedFlightData);
 
         // ensure the bool for altitude change is calculated first since it is used in the altitude flag calculation

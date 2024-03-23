@@ -15,11 +15,7 @@ public static class JurisdictionManager
         var atopState = fdr.GetAtopState();
 
         // check if aircraft previously tracked to avoid re-tracking manually dropped/handed off tracks
-        if (isInControlledSector && !fdr.IsTracked && atopState is { PreviouslyTracked: false })
-        {
-            MMI.AcceptJurisdiction(fdr);
-            atopState.PreviouslyTracked = true;
-        }
+        if (isInControlledSector && !fdr.IsTracked && atopState is { WasHandedOff: false }) MMI.AcceptJurisdiction(fdr);
 
         // if they're outside sector, currently tracked, and not going to re-enter, drop them
         if (!isInControlledSector && fdr.IsTrackedByMe && !await WillEnter(fdr)) MMI.HandoffToNone(fdr);
