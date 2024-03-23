@@ -13,15 +13,16 @@ public static class JurisdictionManager
 
         var isInControlledSector = await IsInControlledSector(fdr.GetLocation(), fdr.PRL);
         var atopState = fdr.GetAtopState();
-        var activated = AtopPluginStateManager.IsActivated();
 
         // check if aircraft previously tracked to avoid re-tracking manually dropped/handed off tracks
-        if (activated && isInControlledSector && !fdr.IsTracked && atopState is { WasHandedOff: false })
+        if (AtopPluginStateManager.Activated && isInControlledSector && !fdr.IsTracked &&
+            atopState is { WasHandedOff: false })
             MMI.AcceptJurisdiction(fdr);
 
         // if they're outside sector, currently tracked, and not going to re-enter, drop them
         // also drop them if we are not activated
-        if ((!isInControlledSector && fdr.IsTrackedByMe && !await WillEnter(fdr)) || (fdr.IsTrackedByMe && !activated))
+        if ((!isInControlledSector && fdr.IsTrackedByMe && !await WillEnter(fdr)) ||
+            (fdr.IsTrackedByMe && !AtopPluginStateManager.Activated))
             MMI.HandoffToNone(fdr);
     }
 

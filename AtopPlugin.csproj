@@ -83,6 +83,7 @@
         <Compile Include="State\JurisdictionManager.cs"/>
         <Compile Include="State\PrivateMessagesChangedHandler.cs"/>
         <Compile Include="State\RadarFlagToggleHandler.cs"/>
+        <Compile Include="UI\AtopMenu.cs"/>
         <Compile Include="UI\SettingsWindow.cs">
             <SubType>Form</SubType>
         </Compile>
