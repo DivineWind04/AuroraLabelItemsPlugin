@@ -1,7 +1,9 @@
 ﻿using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AtopPlugin;
 using AtopPlugin.Conflict;
+using AtopPlugin.State;
 using AtopPlugin.UI;
 using vatsys;
 

@@ -89,6 +89,9 @@
     <Compile Include="UI\ConflictSummaryWindow.Designer.cs">
       <DependentUpon>ConflictSummaryWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AtopMenu.cs">
+      <SubType>designer</SubType>
+    </Compile>
     <Compile Include="UI\SettingsWindow.cs">
       <SubType>designer</SubType>
     </Compile>
@@ -169,50 +172,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="AtopPlugin.cs"/>
-        <Compile Include="Conflict\ConflictAreaCalculator.cs"/>
-        <Compile Include="Conflict\ConflictProbe.cs"/>
-        <Compile Include="Conflict\MinimaCalculator.cs"/>
-        <Compile Include="Constants.cs"/>
-        <Compile Include="Display\LabelItemRenderer.cs"/>
-        <Compile Include="Display\StripItemRenderer.cs"/>
-        <Compile Include="Display\TrackColorRenderer.cs"/>
-        <Compile Include="Extensions.cs"/>
-        <Compile Include="Logic\AltitudeCalculator.cs"/>
-        <Compile Include="Logic\FlightDataCalculator.cs"/>
-        <Compile Include="Logic\NextSectorCalculator.cs"/>
-        <Compile Include="Logic\SccFlagCalculator.cs"/>
-        <Compile Include="Models\AltitudeBlock.cs"/>
-        <Compile Include="Models\AltitudeFlag.cs"/>
-        <Compile Include="Models\ConflictStatus.cs"/>
-        <Compile Include="Models\ConflictType.cs"/>
-        <Compile Include="Models\DirectionOfFlight.cs"/>
-        <Compile Include="Models\CalculatedFlightData.cs"/>
-        <Compile Include="Models\SccFlag.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="State\AtopAircraftDisplayState.cs"/>
-        <Compile Include="State\AtopPluginStateManager.cs"/>
-        <Compile Include="State\AtopAircraftState.cs"/>
-        <Compile Include="State\DisconnectHandler.cs"/>
-        <Compile Include="State\FdrPropertyChangesListener.cs"/>
-        <Compile Include="State\JurisdictionManager.cs"/>
-        <Compile Include="State\PrivateMessagesChangedHandler.cs"/>
-        <Compile Include="State\RadarFlagToggleHandler.cs"/>
-        <Compile Include="UI\AtopMenu.cs"/>
-        <Compile Include="UI\SettingsWindow.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="UI\SettingsWindow.Designer.cs">
-            <DependentUpon>SettingsWindow.cs</DependentUpon>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
         <None Include="packages.config"/>
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Include="UI\SettingsWindow.resx">
-            <DependentUpon>SettingsWindow.cs</DependentUpon>
-        </EmbeddedResource>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <Import Project="packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net48.targets" Condition="Exists('packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net48.targets')"/>
