@@ -90,6 +90,7 @@
         <Compile Include="UI\SettingsWindow.Designer.cs">
             <DependentUpon>SettingsWindow.cs</DependentUpon>
         </Compile>
+        <Compile Include="UI\TempActivationMessagePopup.cs"/>
     </ItemGroup>
     <ItemGroup>
         <None Include="packages.config"/>

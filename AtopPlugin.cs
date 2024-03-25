@@ -16,6 +16,7 @@ public class AtopPlugin : ILabelPlugin, IStripPlugin
     {
         RegisterEventHandlers();
         AtopMenu.Initialize();
+        TempActivationMessagePopup.PopUpActivationMessageIfFirstTime();
     }
 
     private static void RegisterEventHandlers()
